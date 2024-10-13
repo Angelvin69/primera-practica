@@ -25,11 +25,10 @@ void graficar_figura(int id) {
 
     }
     void graficar_figura(int id) {
-    // ... (resto de la función sin cambios)
 
     case ELIPSE:
-        int a = (int)(figura.dimension1 * escala); // Semieje mayor
-        int b = (int)(figura.dimension2 * escala); // Semieje menor
+        int a = (int)(figura.dimension1 * escala); 
+        int b = (int)(figura.dimension2 * escala); 
 
         for (int y = -b; y <= b; y++) {
             for (int x = -a; x <= a; x++) {
@@ -40,6 +39,4 @@ void graficar_figura(int id) {
         }
         break;
     }
-
-    // ... (resto de la función sin cambios)
 }
