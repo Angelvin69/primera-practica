@@ -1,0 +1,56 @@
+void guardar_figuras(const char *nombre_archivo) {
+    FILE *f = fopen(nombre_archivo, "w");
+    if (f == NULL) {
+        printf("Error al abrir el archivo.\n");
+        return;
+    }
+
+    for (int i = 0; i < totalFiguras; i++) {
+        fprintf(f, "%d,%f,%f,%f\n",
+                figuras[i].tipo,
+                figuras[i].dimension1,
+                figuras[i].dimension2,
+                figuras[i].dimension3);
+    }
+
+    fclose(f);
+    printf("Figuras guardadas en %s.\n", nombre_archivo);
+}
+
+void cargar_figuras(const char *nombre_archivo) {
+    FILE *f = fopen(nombre_archivo, "r");
+    if (f == NULL) {
+        printf("Error al abrir el archivo.\n");
+        return;
+    }
+
+    while (fscanf(f, "%d,%f,%f,%f", &figuras[totalFiguras].tipo,
+                          &figuras[totalFiguras].dimension1,
+                          &figuras[totalFiguras].dimension2,
+                          &figuras[totalFiguras].dimension3) == 4) {
+        totalFiguras++;
+    }
+
+    fclose(f);
+    printf("Figuras cargadas desde %s.\n", nombre_archivo);
+}
+
+void eliminar_figura(int id) {
+    // ... (código original para eliminar la figura de la memoria)
+
+    // Recrear el archivo sin la figura eliminada
+    guardar_figuras("figuras.txt");
+}
+
+// ... (resto del código)
+
+int main() {
+    // ... (código original)
+
+    // Ejemplo de uso:
+    cargar_figuras("figuras.txt");
+    // ... (resto del programa)
+    guardar_figuras("figuras.txt");
+
+    return 0;
+}
