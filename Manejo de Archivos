@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+int main() {
+    FILE *archivo;
+    char cadena[100];
+    archivo = fopen("mi_archivo.txt", "w");
+    if (archivo == NULL) {
+        printf("Error al abrir el archivo.\n");
+        return 1;
+    }
+
+    printf("Ingrese el texto a escribir: ");
+    fgets(cadena, 100, stdin);
+    fputs(cadena, archivo);
+
+    fclose(archivo);
+
+ 
+    archivo = fopen("mi_archivo.txt", "r");
+    if (archivo == NULL) {
+        printf("Error al abrir el archivo.\n");
+        return 1;
+    }
+
+    printf("Contenido del archivo:\n");
+    while (fgets(cadena, 100, archivo) != NULL) {
+        printf("%s", cadena);
+    }
+
+    fclose(archivo);
+
+    return 0;
+}
